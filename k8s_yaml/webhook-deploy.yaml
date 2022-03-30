@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validation-webhook
+  labels:
+    app: webhook
+    development: webhook-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webhook
+  template:
+    metadata:
+      labels:
+        app: webhook
+    spec:
+      containers:
+      - name: webhook
+        image: webhook:validation
+        ports:
+        - containerPort: 443
+        env:
+        - name: K8S_NAMESPACE
+          valueFrom:
+            configMapKeyRef:
+              name: namespace-conf
+              key: namespace
+        volumeMounts:
+        - name: certs-volume
+          readOnly: true
+          mountPath: "/certs"
+        imagePullPolicy: IfNotPresent
+      volumes:
+      - name: certs-volume
+        secret:
+          secretName: admission-tls
