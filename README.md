@@ -1,3 +1,18 @@
+1. Create an infrastructure diagram for the given requirements.
+
+https://github.com/asheptc/t/blob/main/infrastructure_diagram.drawio (File could be open via https://www.draw.io/)
+
+============================================================================================================================
+
+3. Create a flowchart to monitor 4-key metrics
+
+https://github.com/asheptc/t/blob/main/flowchart_to_monitor.drawio (File could be open via https://www.draw.io/)
+
+===============================================================================================
+
+4. Create a custom validation webhook for kubernetes for the given requirements
+
+
 Genetare cert for DNS name webhook.default.svc
 
 openssl req -x509 -sha256 -newkey rsa:2048 -keyout webhook.key -out webhook.crt -days 1024 -nodes -addext "subjectAltName = DNS.1:webhook.default.svc"
